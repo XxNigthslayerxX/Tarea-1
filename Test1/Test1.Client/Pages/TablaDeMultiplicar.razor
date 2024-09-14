@@ -1,0 +1,51 @@
+﻿@page "/TablaDeMultiplicar2"
+@rendermode InteractiveWebAssembly
+
+<h2>Tabla de Multiplicar</h2>
+
+<input @bind="numero" placeholder="Ingresa un número" type="number" />
+
+<button @onclick="GenerarTabla">Generar Tabla</button>
+
+<ul>
+    @foreach (var item in tablaMultiplicar)
+    {
+        <li>@item</li>
+    }
+</ul>
+
+@code {
+    private int numero;
+    private List<string> tablaMultiplicar = new();
+
+    private void GenerarTabla()
+    {
+        tablaMultiplicar.Clear();
+        for (int i = 0; i <= 15; i++)
+        {
+            tablaMultiplicar.Add($"{i} x {numero} = {i * numero}");
+        }
+    }
+}
+
+<style>
+    h2 {
+        color: #333;
+        text-align: center;
+    }
+    input, button {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+    li {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+</style>
